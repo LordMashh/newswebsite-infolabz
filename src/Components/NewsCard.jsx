@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Loader from "./Loader";
 
 function NewsCard({ apiUrl }) {
@@ -6,7 +6,7 @@ function NewsCard({ apiUrl }) {
   const [readmoreIndex, setReadmoreIndex] = useState(-1);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(apiUrl);
@@ -19,11 +19,11 @@ function NewsCard({ apiUrl }) {
       console.error("Error fetching data:", error);
     }
     setLoading(false);
-  };
+  }, [apiUrl]);
 
   useEffect(() => {
     fetchData();
-  }, [apiUrl, fetchData]);
+  }, [fetchData]);
 
   return (
     <div className="NewsCardsContainer">
