@@ -23,7 +23,7 @@ function NewsCard({ apiUrl }) {
 
   useEffect(() => {
     fetchData();
-  }, [apiUrl]);
+  }, [apiUrl, fetchData]);
 
   return (
     <div className="NewsCardsContainer">
@@ -44,7 +44,7 @@ function NewsCard({ apiUrl }) {
                 <span
                   className="readMore"
                   onClick={() => {
-                    setReadmoreIndex(prevIndex =>
+                    setReadmoreIndex((prevIndex) =>
                       prevIndex === index ? -1 : index
                     );
                   }}
@@ -53,7 +53,11 @@ function NewsCard({ apiUrl }) {
                 </span>
               </div>
             </div>
-            <a href={article.sourceUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={article.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <button className="fullArticles">Read Full Article</button>
             </a>
           </div>
