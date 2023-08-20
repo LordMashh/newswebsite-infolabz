@@ -51,11 +51,15 @@ body {
   justify-content: center;
   background-color: #161D29;
 }
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Adjust font size for small screens */
+  }
 
-.cityImage {
-  width: 380px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
+  .NewsCard {
+    width: 90%; /* Adjust the width of the card for small screens */
+    padding: 10px; /* Adjust padding for small screens */
+  }
 }
 
 .NewsCardInfo {
