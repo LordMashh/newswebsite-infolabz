@@ -15,7 +15,7 @@ function App() {
         <Route path="/Trending" element={<NewsCard apiUrl="https://inshorts.me/news/trending"/>} />
         <Route path="/Science" element={<NewsCard apiUrl="https://inshorts.me/news/topics/science" />} />
         <Route path="/Sports" element={<NewsCard apiUrl="https://inshorts.me/news/topics/sports" />} />
-      </Routes>
+    </Routes>
     </div>
   );
 }
