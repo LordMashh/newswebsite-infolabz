@@ -45,7 +45,7 @@ function Nav() {
           </button>
         </div>
         <nav className={classNames("md:flex md:gap-x-6 text-richblack-900 md:ml-[200px] font-bold text-xl", { "md:block": navVisible, hidden: !navVisible })}>
-          <ul className="flex md:flex-row sm:flex-col gap-y-4 md:gap-x-6">
+          <ul className="flex flex-col md:flex-row gap-y-4 md:gap-x-6">
             {navItems.map((item) => (
               <NavItem key={item.to} to={item.to} label={item.label} currentPath={location.pathname} onClick={closeNav}/>
             ))}
