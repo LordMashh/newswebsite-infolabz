@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames"; // Import the classnames library
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import Font Awesome icons
 import "../App.css";
 
 function Nav() {
@@ -10,65 +12,56 @@ function Nav() {
   const toggleNav = () => {
     setNavVisible(!navVisible);
   };
+  const closeNav = () => {
+    setNavVisible(false);
+  };
+
+  const navItems = [
+    { to: "/", label: "All" },
+    { to: "/Top", label: "Top" },
+    { to: "/Hatke", label: "Hatke" },
+    { to: "/National", label: "National" },
+    { to: "/International", label: "International" },
+    { to: "/Entertainment", label: "Entertainment" },
+    { to: "/Business", label: "Business" },
+    { to: "/Startup", label: "Startup" },
+    { to: "/Trending", label: "Trending" },
+    { to: "/Automobile", label: "Automobile" },
+    { to: "/Science", label: "Science" },
+    { to: "/Sports", label: "Sports" },
+  ];
 
   return (
-    <div className="w-11/12 max-w-[1160px] mx-auto flex flex-col md:flex-row justify-between items-center py-4">
-      <div className="flex justify-between mx-auto items-center">
-        <h1 className="text-richblack-900 font-bold text-xl mr-8">
+    <div>
+      <div className="container mx-auto flex flex-col md:flex-row py-4">
+        <h1 className="text-richblack-900 font-bold text-xl">
           <Link to="/">MY NEWS WEBSITE</Link>
         </h1>
-        <button className="md:hidden" onClick={toggleNav}>
-          {navVisible ? "Hide" : "Show"} Menu
-        </button>
       </div>
-      <nav
-        className={classNames(
-          "md:flex md:gap-x-6 text-richblack-900 md:ml-[200px] font-bold text-xl",
-          { "md:block": navVisible, hidden: !navVisible }
-        )}
-      >
-        <ul className="flex flex-col md:flex-row gap-y-4 md:gap-x-6">
-          <NavItem to="/" label="All" currentPath={location.pathname} />
-          <NavItem
-            to="/top"
-            label="top"
-            currentPath={location.pathname}
-          />
-          <NavItem
-            to="/entertainment"
-            label="Entertainment"
-            currentPath={location.pathname}
-          />
-          <NavItem
-            to="/trending"
-            label="trending"
-            currentPath={location.pathname}
-          />
-          <NavItem
-            to="/science"
-            label="Science"
-            currentPath={location.pathname}
-          />
-          <NavItem
-            to="/sports"
-            label="Sports"
-            currentPath={location.pathname}
-          />
-        </ul>
-      </nav>
+      <div className="flex flex-col md:flex-row py-4">
+        <div className="flex flex-col justify-between items-center">
+          <button className="md:hidden" onClick={toggleNav}>
+            <FontAwesomeIcon icon={navVisible ? faTimes : faBars} />
+          </button>
+        </div>
+        <nav className={classNames("md:flex md:gap-x-6 text-richblack-900 md:ml-[200px] font-bold text-xl", { "md:block": navVisible, hidden: !navVisible })}>
+          <ul className="flex md:flex-row sm:flex-col gap-y-4 md:gap-x-6">
+            {navItems.map((item) => (
+              <NavItem key={item.to} to={item.to} label={item.label} currentPath={location.pathname} onClick={closeNav}/>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }
 
-const NavItem = ({ to, label, currentPath }) => {
+const NavItem = ({ to, label, currentPath, onClick }) => {
   const isActive = to === currentPath;
 
   return (
     <li className={classNames("nav-item", { active: isActive })}>
-      <Link
-        to={to}
-        className={classNames("nav-link", { underline: isActive })}
-      >
+      <Link to={to} className={classNames("nav-link", { underline: isActive })} onClick={onClick}>
         {label}
       </Link>
     </li>
