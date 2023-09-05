@@ -51,7 +51,7 @@ function Nav() {
     <div>
       <div className="container mx-auto flex flex-col md:flex-row py-4">
         <h1 className="text-richblack-900 font-bold text-xl">
-          <Link to="/">MY NEWS WEBSITE </Link>
+          <Link to="/">simplified-inshort-news-website</Link>
         </h1>
         
       </div>
