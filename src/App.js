@@ -1,9 +1,10 @@
+import React, {Suspense} from "react";
 import "./index.css";
 import "./App.css";
 import Nav from "./Components/Nav";
 import { Route, Routes } from "react-router-dom";
-import NewsCard from "./Components/NewsCard";
 import ScrollToTop from "./ScrollToTop";
+const NewsCard = React.lazy(() => import("./Components/NewsCard"));
 // import ScrollToTop from "react-scroll-to-top";
 
 // Define a mapping of route paths to API URLs
@@ -31,7 +32,11 @@ function App() {
       <ScrollToTop/>
         <Routes>
         {Object.entries(routeToAPI).map(([path, apiUrl]) => (
-          <Route key={path} path={path} element={<NewsCard apiUrl={apiUrl} />} />
+          <Route key={path} path={path} element={
+            <Suspense fallback = { <p>loading</p>} >
+              <NewsCard apiUrl={apiUrl} />
+            </Suspense>
+        } />
           ))}
       </Routes>
      

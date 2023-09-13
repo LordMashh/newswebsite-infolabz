@@ -21,6 +21,10 @@ const ScrollToTop = () => {
             setShowBottomBtn(false);
           }
       });
+      return () => {
+        window.removeEventListener("scroll");
+      };
+      
     }, []);
     const goToTop = () => {
         window.scrollTo({
